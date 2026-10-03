@@ -462,30 +462,6 @@ input[data-testid="search-input"]:focus {
    theme.js additions
    -------------------------------------------------------------------------- */
 
-/* Claude spark — sits in the top bar and turns while music plays */
-.cl-spark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  margin-inline: 8px 4px;
-  color: var(--cl-accent);
-  align-self: center;
-  -webkit-app-region: no-drag;
-  cursor: default;
-}
-
-.cl-spark svg {
-  width: 20px;
-  height: 20px;
-  transition: transform 600ms var(--cl-ease);
-}
-
-.cl-playing .cl-spark svg {
-  animation: cl-spin 14s linear infinite;
-}
-
 @keyframes cl-spin {
   to {
     transform: rotate(360deg);

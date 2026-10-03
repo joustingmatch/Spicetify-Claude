@@ -15,26 +15,6 @@
     }).join("") +
     "</svg>";
 
-  // Spark mark in the top bar
-  function mountSpark() {
-    if (document.querySelector(".cl-spark")) return;
-    const host =
-      document.querySelector(".main-globalNav-historyButtonsContainer") ||
-      document.querySelector(".main-topBar-historyButtons") ||
-      document.querySelector('#global-nav-bar [aria-label="Go back"]')?.parentElement;
-    if (!host) return;
-    const el = document.createElement("div");
-    el.className = "cl-spark";
-    el.title = "Claude";
-    el.innerHTML = SPARK;
-    host.prepend(el);
-  }
-
-  // Playback state drives the spark animation
-  function syncPlaying() {
-    document.body.classList.toggle("cl-playing", !Spicetify.Player.data?.isPaused && !!Spicetify.Player.data);
-  }
-
   // Serif greeting on the home page
   function greetingText() {
     const h = new Date().getHours();
@@ -76,18 +56,14 @@
     queued = true;
     requestAnimationFrame(() => {
       queued = false;
-      mountSpark();
       mountGreeting();
       stripTints();
       document.querySelectorAll('[data-testid="home-ads-container"]').forEach((n) => n.remove());
     });
   }
 
-  Spicetify.Player.addEventListener("onplaypause", syncPlaying);
-  Spicetify.Player.addEventListener("songchange", syncPlaying);
   Spicetify.Platform.History.listen(refresh);
   new MutationObserver(refresh).observe(document.body, { childList: true, subtree: true });
 
-  syncPlaying();
   refresh();
 })();

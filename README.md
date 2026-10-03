@@ -1,6 +1,6 @@
 # Claude
 
-A warm, editorial Spicetify theme inspired by **[Claude](https://claude.ai)**. It uses charcoal and ivory surfaces, clay accents, serif headings, and a small spark that turns while music plays.
+A warm, editorial Spicetify theme inspired by **[Claude](https://claude.ai)**. It uses charcoal and ivory surfaces, clay accents, serif headings, and a slowly turning Claude spark in the background.
 
 <p align="center">
   <img src="https://img.shields.io/badge/Spicetify-Theme-d97757?style=flat-square" alt="Spicetify Theme">
@@ -35,7 +35,6 @@ A warm, editorial Spicetify theme inspired by **[Claude](https://claude.ai)**. I
 * **Clay accent** (`#d97757`) on play buttons, active tracks, the progress bar and focus rings
 * **Serif headings** set in Source Serif 4, with Inter for body text
 * Rounded panels with hairline borders and even spacing
-* **Spark mark** in the top bar that rotates while music plays
 * **Time-aware greeting** on the home page ("Good evening, …")
 * Spotify's cover-art color tint removed
 * Home-page announcement and promo banners hidden
@@ -85,7 +84,7 @@ spicetify apply
 
 > **Important:** `inject_theme_js 1` is required.
 >
-> Without it, `theme.js` will not run, so the spark, the home greeting and the tint removal will not load. The rest of the theme still works.
+> Without it, `theme.js` will not run, so the home greeting, banner removal and tint removal will not load. The rest of the theme still works.
 
 ## Colors
 
@@ -136,7 +135,7 @@ spicetify enable-devtools
 
 Inspect the affected element and check its class name. If you find a component the theme doesn't cover, please open an issue.
 
-### The spark or greeting isn't showing
+### The greeting isn't showing
 
 Make sure JavaScript injection is enabled:
 
