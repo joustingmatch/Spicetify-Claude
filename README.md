@@ -38,6 +38,7 @@ A warm, editorial Spicetify theme inspired by **[Claude](https://claude.ai)**. I
 * **Spark mark** in the top bar that rotates while music plays
 * **Time-aware greeting** on the home page ("Good evening, …")
 * Spotify's cover-art color tint removed
+* Large, slowly turning **Claude spark** watermark in the background
 * Soft clay glow at the top of each page
 * Styled library, cards, track lists, context menus, search, lyrics and player
 * Thin rounded scrollbars
@@ -110,6 +111,7 @@ The main customization variables are at the top of `user.css`:
 | `--cl-serif`  | Heading typeface                    |
 | `--cl-sans`   | Body typeface                       |
 | `--cl-border` | Hairline border color               |
+| `--cl-watermark-opacity` | Background spark opacity (`0` hides it) |
 
 Change these values to adjust the theme's overall look without editing the rest of the stylesheet.
 

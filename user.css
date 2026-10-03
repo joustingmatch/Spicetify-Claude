@@ -19,6 +19,7 @@
   --cl-serif: "Source Serif 4", "Tiempos Text", Georgia, serif;
   --cl-sans: "Inter", "Styrene B", system-ui, -apple-system, "Segoe UI", sans-serif;
   --cl-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --cl-watermark-opacity: 0.06;               /* background spark (0 = off) */
 
   /* Map Spotify's Encore tokens onto the scheme */
   --background-base: var(--spice-main) !important;
@@ -418,6 +419,29 @@ input[data-testid="search-input"]:focus {
 ::-webkit-scrollbar-track,
 .os-scrollbar-track {
   background: transparent !important;
+}
+
+/* --------------------------------------------------------------------------
+   Background — large Claude spark watermark in the main view
+   -------------------------------------------------------------------------- */
+.Root__main-view {
+  position: relative;
+}
+
+.Root__main-view::after {
+  content: "";
+  position: absolute;
+  right: -12%;
+  bottom: -18%;
+  width: min(78vh, 70%);
+  aspect-ratio: 1;
+  pointer-events: none;
+  z-index: 5;
+  opacity: var(--cl-watermark-opacity, 0.06);
+  background-color: var(--cl-accent);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg%3E%3Crect x='11.1' y='1.5' width='1.8' height='10.5' rx='.9'/%3E%3Crect x='11.1' y='3.5' width='1.8' height='8.5' rx='.9' transform='rotate(30 12 12)'/%3E%3Crect x='11.1' y='1.5' width='1.8' height='10.5' rx='.9' transform='rotate(60 12 12)'/%3E%3Crect x='11.1' y='3.5' width='1.8' height='8.5' rx='.9' transform='rotate(90 12 12)'/%3E%3Crect x='11.1' y='1.5' width='1.8' height='10.5' rx='.9' transform='rotate(120 12 12)'/%3E%3Crect x='11.1' y='3.5' width='1.8' height='8.5' rx='.9' transform='rotate(150 12 12)'/%3E%3Crect x='11.1' y='1.5' width='1.8' height='10.5' rx='.9' transform='rotate(180 12 12)'/%3E%3Crect x='11.1' y='3.5' width='1.8' height='8.5' rx='.9' transform='rotate(210 12 12)'/%3E%3Crect x='11.1' y='1.5' width='1.8' height='10.5' rx='.9' transform='rotate(240 12 12)'/%3E%3Crect x='11.1' y='3.5' width='1.8' height='8.5' rx='.9' transform='rotate(270 12 12)'/%3E%3Crect x='11.1' y='1.5' width='1.8' height='10.5' rx='.9' transform='rotate(300 12 12)'/%3E%3Crect x='11.1' y='3.5' width='1.8' height='8.5' rx='.9' transform='rotate(330 12 12)'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg%3E%3Crect x='11.1' y='1.5' width='1.8' height='10.5' rx='.9'/%3E%3Crect x='11.1' y='3.5' width='1.8' height='8.5' rx='.9' transform='rotate(30 12 12)'/%3E%3Crect x='11.1' y='1.5' width='1.8' height='10.5' rx='.9' transform='rotate(60 12 12)'/%3E%3Crect x='11.1' y='3.5' width='1.8' height='8.5' rx='.9' transform='rotate(90 12 12)'/%3E%3Crect x='11.1' y='1.5' width='1.8' height='10.5' rx='.9' transform='rotate(120 12 12)'/%3E%3Crect x='11.1' y='3.5' width='1.8' height='8.5' rx='.9' transform='rotate(150 12 12)'/%3E%3Crect x='11.1' y='1.5' width='1.8' height='10.5' rx='.9' transform='rotate(180 12 12)'/%3E%3Crect x='11.1' y='3.5' width='1.8' height='8.5' rx='.9' transform='rotate(210 12 12)'/%3E%3Crect x='11.1' y='1.5' width='1.8' height='10.5' rx='.9' transform='rotate(240 12 12)'/%3E%3Crect x='11.1' y='3.5' width='1.8' height='8.5' rx='.9' transform='rotate(270 12 12)'/%3E%3Crect x='11.1' y='1.5' width='1.8' height='10.5' rx='.9' transform='rotate(300 12 12)'/%3E%3Crect x='11.1' y='3.5' width='1.8' height='8.5' rx='.9' transform='rotate(330 12 12)'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  animation: cl-spin 240s linear infinite;
 }
 
 /* --------------------------------------------------------------------------
