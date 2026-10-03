@@ -424,6 +424,16 @@ input[data-testid="search-input"]:focus {
 }
 
 /* --------------------------------------------------------------------------
+   Hide home-page promos / announcement banners
+   -------------------------------------------------------------------------- */
+[data-testid="home-ads-container"],
+[data-testid="home-ad-card"],
+[data-testid="home-sponsored-shelf"],
+[data-testid="sponsored-shelf"] {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
    Background — large Claude spark watermark in the main view
    -------------------------------------------------------------------------- */
 .Root__main-view,
@@ -461,6 +471,7 @@ input[data-testid="search-input"]:focus {
   height: 32px;
   margin-inline: 8px 4px;
   color: var(--cl-accent);
+  align-self: center;
   -webkit-app-region: no-drag;
   cursor: default;
 }

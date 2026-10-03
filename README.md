@@ -38,6 +38,7 @@ A warm, editorial Spicetify theme inspired by **[Claude](https://claude.ai)**. I
 * **Spark mark** in the top bar that rotates while music plays
 * **Time-aware greeting** on the home page ("Good evening, …")
 * Spotify's cover-art color tint removed
+* Home-page announcement and promo banners hidden
 * Large, slowly turning **Claude spark** watermark in the background
 * Soft clay glow at the top of each page
 * Styled library, cards, track lists, context menus, search, lyrics and player

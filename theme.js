@@ -79,6 +79,7 @@
       mountSpark();
       mountGreeting();
       stripTints();
+      document.querySelectorAll('[data-testid="home-ads-container"]').forEach((n) => n.remove());
     });
   }
 
