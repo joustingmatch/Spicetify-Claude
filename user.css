@@ -92,6 +92,8 @@ body,
 }
 
 .Root__nav-bar,
+#Desktop_LeftSidebar_Id,
+#main-view,
 .Root__main-view,
 .Root__right-sidebar > div,
 .main-yourLibraryX-library,
@@ -424,11 +426,13 @@ input[data-testid="search-input"]:focus {
 /* --------------------------------------------------------------------------
    Background — large Claude spark watermark in the main view
    -------------------------------------------------------------------------- */
-.Root__main-view {
+.Root__main-view,
+#main-view {
   position: relative;
 }
 
-.Root__main-view::after {
+.Root__main-view::after,
+#main-view::after {
   content: "";
   position: absolute;
   right: -12%;

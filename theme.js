@@ -20,7 +20,8 @@
     if (document.querySelector(".cl-spark")) return;
     const host =
       document.querySelector(".main-globalNav-historyButtonsContainer") ||
-      document.querySelector(".main-topBar-historyButtons");
+      document.querySelector(".main-topBar-historyButtons") ||
+      document.querySelector('#global-nav-bar [aria-label="Go back"]')?.parentElement;
     if (!host) return;
     const el = document.createElement("div");
     el.className = "cl-spark";
