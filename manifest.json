@@ -1,0 +1,11 @@
+{
+  "name": "Claude",
+  "description": "A warm, editorial theme inspired by Claude. Ivory and charcoal surfaces, clay accents, serif headings, and a spark that turns while you listen.",
+  "usercss": "user.css",
+  "schemes": "color.ini",
+  "preview": "screenshots/preview_1.png",
+  "readme": "README.md",
+  "authors": [{ "name": "joustingmatch", "url": "https://github.com/joustingmatch" }],
+  "tags": ["dark", "light", "minimal", "warm", "serif", "claude"],
+  "include": ["https://raw.githubusercontent.com/joustingmatch/Spicetify-Claude/main/theme.js"]
+}

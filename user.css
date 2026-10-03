@@ -1,0 +1,493 @@
+/* ==========================================================================
+   Claude — a warm, editorial Spicetify theme
+   https://github.com/joustingmatch/Spicetify-Claude
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap");
+
+/* --------------------------------------------------------------------------
+   Customization — tweak these to reshape the whole theme
+   -------------------------------------------------------------------------- */
+:root {
+  --cl-accent: var(--spice-button);           /* clay accent              */
+  --cl-accent-soft: rgba(var(--spice-rgb-button), 0.14);
+  --cl-border: rgba(var(--spice-rgb-text), 0.08);
+  --cl-border-strong: rgba(var(--spice-rgb-text), 0.14);
+  --cl-radius: 14px;                          /* panel corner radius      */
+  --cl-radius-sm: 8px;                        /* cards, rows, inputs      */
+  --cl-gap: 8px;                              /* space between panels     */
+  --cl-serif: "Source Serif 4", "Tiempos Text", Georgia, serif;
+  --cl-sans: "Inter", "Styrene B", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --cl-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Map Spotify's Encore tokens onto the scheme */
+  --background-base: var(--spice-main) !important;
+  --background-highlight: var(--spice-highlight) !important;
+  --background-press: var(--spice-main-elevated) !important;
+  --background-elevated-base: var(--spice-main-elevated) !important;
+  --background-elevated-highlight: var(--spice-highlight-elevated) !important;
+  --background-tinted-base: rgba(var(--spice-rgb-text), 0.06) !important;
+  --background-tinted-highlight: rgba(var(--spice-rgb-text), 0.1) !important;
+  --text-base: var(--spice-text) !important;
+  --text-subdued: var(--spice-subtext) !important;
+  --text-bright-accent: var(--spice-button) !important;
+  --text-positive: var(--spice-button) !important;
+  --essential-bright-accent: var(--spice-button) !important;
+  --decorative-subdued: var(--cl-border-strong) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Typography
+   -------------------------------------------------------------------------- */
+body,
+.encore-text,
+input,
+button {
+  font-family: var(--cl-sans) !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+.main-entityHeader-title h1,
+.main-entityHeader-title .encore-text,
+.main-view-container h1,
+.main-home-homeHeader h2,
+.main-shelf-title,
+[data-testid="home-page"] h2,
+.main-type-canon,
+.main-type-cello,
+.main-type-alto,
+.encore-text-title-large,
+.encore-text-title-medium,
+.encore-text-headline-large,
+.lyrics-lyricsContent-text {
+  font-family: var(--cl-serif) !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.015em !important;
+}
+
+.main-entityHeader-title h1,
+.main-entityHeader-title .encore-text-headline-large {
+  font-size: clamp(2.25rem, 5vw, 4.25rem) !important;
+  line-height: 1.05 !important;
+}
+
+::selection {
+  background: var(--cl-accent-soft);
+  color: var(--spice-text);
+}
+
+/* --------------------------------------------------------------------------
+   Layout shell — calm panels with hairline borders
+   -------------------------------------------------------------------------- */
+body,
+.Root__top-container {
+  background: var(--spice-sidebar) !important;
+}
+
+.Root__top-container {
+  gap: var(--cl-gap) !important;
+  padding: var(--cl-gap) !important;
+  padding-top: 0 !important;
+}
+
+.Root__nav-bar,
+.Root__main-view,
+.Root__right-sidebar > div,
+.main-yourLibraryX-library,
+.main-yourLibraryX-navLink {
+  border-radius: var(--cl-radius) !important;
+}
+
+.Root__main-view,
+.Root__nav-bar .main-yourLibraryX-library,
+.Root__right-sidebar aside,
+.Root__right-sidebar section {
+  background: var(--spice-main) !important;
+  border: 1px solid var(--cl-border);
+  overflow: hidden;
+}
+
+.Root__now-playing-bar {
+  background: var(--spice-player) !important;
+  border-top: none !important;
+}
+
+.Root__globalNav,
+.main-globalNav-searchInputContainer,
+.global-nav {
+  background: var(--spice-sidebar) !important;
+}
+
+/* Remove Spotify's cover-art color washes */
+.main-entityHeader-background,
+.main-entityHeader-backgroundColor,
+.main-entityHeader-overlay,
+.main-actionBarBackground-background,
+.main-home-homeHeader,
+.main-topBar-background,
+.before-scroll-node + div [style*="background-color"],
+.x-entityHeader-overlay {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+.main-topBar-background {
+  background: rgba(var(--spice-rgb-main), 0.88) !important;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--cl-border);
+}
+
+/* Soft clay glow at the top of every page */
+.main-view-container__scroll-node-child::before,
+.main-view-container .os-viewport > div::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 340px;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 100% at 0% 0%,
+    rgba(var(--spice-rgb-button), 0.1) 0%,
+    transparent 60%
+  );
+  z-index: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Library sidebar
+   -------------------------------------------------------------------------- */
+.main-yourLibraryX-listItem [role="row"],
+.main-yourLibraryX-listItem > div {
+  border-radius: var(--cl-radius-sm) !important;
+  transition: background-color 160ms var(--cl-ease);
+}
+
+.main-yourLibraryX-listItem [aria-selected="true"],
+.main-yourLibraryX-listItem [aria-current="page"] {
+  background: var(--cl-accent-soft) !important;
+}
+
+.main-yourLibraryX-listItem [aria-current="page"] .encore-text,
+.main-yourLibraryX-listItem [aria-selected="true"] .encore-text {
+  color: var(--spice-text) !important;
+}
+
+/* Filter chips */
+.search-searchCategory-categoryGrid button,
+[role="tablist"] button,
+.main-yourLibraryX-filterArea button,
+button[role="checkbox"] {
+  border-radius: 999px !important;
+}
+
+/* --------------------------------------------------------------------------
+   Cards
+   -------------------------------------------------------------------------- */
+.main-card-card {
+  background: transparent !important;
+  border: 1px solid transparent;
+  border-radius: var(--cl-radius) !important;
+  transition:
+    background-color 200ms var(--cl-ease),
+    border-color 200ms var(--cl-ease),
+    transform 200ms var(--cl-ease);
+}
+
+.main-card-card:hover {
+  background: var(--spice-card) !important;
+  border-color: var(--cl-border);
+  transform: translateY(-2px);
+}
+
+.main-card-imageContainer,
+.main-cardImage-imageWrapper,
+.main-image-image.main-cardImage-image {
+  border-radius: var(--cl-radius-sm) !important;
+}
+
+.main-cardImage-imageWrapper {
+  box-shadow: 0 8px 24px -12px rgba(var(--spice-rgb-shadow), 0.7) !important;
+}
+
+/* Home shortcuts grid */
+.view-homeShortcutsGrid-shortcut,
+[data-testid="home-page"] [data-encore-id="card"] {
+  background: rgba(var(--spice-rgb-text), 0.04) !important;
+  border: 1px solid var(--cl-border);
+  border-radius: var(--cl-radius-sm) !important;
+}
+
+.view-homeShortcutsGrid-shortcut:hover {
+  background: rgba(var(--spice-rgb-text), 0.08) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Track lists
+   -------------------------------------------------------------------------- */
+.main-trackList-trackListHeader {
+  border-bottom: 1px solid var(--cl-border) !important;
+}
+
+.main-trackList-trackListRow {
+  border-radius: var(--cl-radius-sm) !important;
+  transition: background-color 120ms var(--cl-ease);
+}
+
+.main-trackList-trackListRow:hover {
+  background: rgba(var(--spice-rgb-text), 0.05) !important;
+}
+
+.main-trackList-trackListRow.main-trackList-selected,
+.main-trackList-trackListRow[aria-selected="true"] {
+  background: var(--cl-accent-soft) !important;
+}
+
+.main-trackList-playingIcon,
+.main-trackList-rowTitle.main-trackList-active,
+.main-trackList-active .encore-text,
+[aria-current="true"] .main-trackList-rowTitle {
+  color: var(--cl-accent) !important;
+  fill: var(--cl-accent) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+.main-playButton-PlayButton,
+.encore-bright-accent-set,
+[data-testid="play-button"] > span {
+  --background-base: var(--cl-accent) !important;
+  --background-highlight: var(--spice-button-active) !important;
+  --background-press: var(--spice-button-active) !important;
+  --text-base: var(--spice-main) !important;
+}
+
+[data-testid="play-button"] > span,
+.main-playButton-PlayButton > span {
+  background-color: var(--cl-accent) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 20px -6px rgba(var(--spice-rgb-button), 0.55) !important;
+  transition:
+    transform 180ms var(--cl-ease),
+    background-color 180ms var(--cl-ease) !important;
+}
+
+[data-testid="play-button"]:hover > span {
+  background-color: var(--spice-button-active) !important;
+  transform: scale(1.04);
+}
+
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--cl-accent) !important;
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Search
+   -------------------------------------------------------------------------- */
+.main-globalNav-searchInputContainer input,
+.x-searchInput-searchInputInput,
+input[data-testid="search-input"] {
+  background: var(--spice-main-elevated) !important;
+  border: 1px solid var(--cl-border-strong) !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  transition: border-color 160ms var(--cl-ease), box-shadow 160ms var(--cl-ease);
+}
+
+.main-globalNav-searchInputContainer input:focus,
+.x-searchInput-searchInputInput:focus,
+input[data-testid="search-input"]:focus {
+  border-color: var(--cl-accent) !important;
+  box-shadow: 0 0 0 3px var(--cl-accent-soft) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Now playing bar
+   -------------------------------------------------------------------------- */
+.main-nowPlayingBar-container {
+  background: transparent !important;
+}
+
+.main-nowPlayingWidget-coverArt .cover-art,
+.main-coverSlotCollapsed-container img {
+  border-radius: var(--cl-radius-sm) !important;
+}
+
+.main-playPauseButton-button,
+[data-testid="control-button-playpause"] {
+  background: var(--spice-text) !important;
+  color: var(--spice-main) !important;
+  transition: transform 160ms var(--cl-ease) !important;
+}
+
+[data-testid="control-button-playpause"]:hover {
+  transform: scale(1.06);
+}
+
+.main-shuffleButton-button.main-shuffleButton-active,
+.main-repeatButton-button[aria-checked="true"],
+[data-testid="control-button-shuffle"][aria-checked="true"],
+[data-testid="control-button-repeat"][aria-checked="true"],
+[data-active="true"] {
+  color: var(--cl-accent) !important;
+}
+
+/* Progress + volume */
+.progress-bar {
+  --bg-color: rgba(var(--spice-rgb-text), 0.16) !important;
+  --fg-color: var(--spice-text) !important;
+  --progress-bar-height: 4px !important;
+  --progress-bar-radius: 999px !important;
+}
+
+.progress-bar:hover,
+.progress-bar[data-dragging="true"] {
+  --fg-color: var(--cl-accent) !important;
+}
+
+.x-progressBar-fillColor {
+  background-color: var(--fg-color) !important;
+}
+
+.progress-bar__slider {
+  background: var(--spice-text) !important;
+  box-shadow: 0 0 0 3px var(--cl-accent-soft) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Context menus, popovers, tooltips
+   -------------------------------------------------------------------------- */
+.main-contextMenu-menu,
+.main-trackCreditsModal-container,
+.GenericModal,
+[data-tippy-root] > div,
+.encore-dark-theme .main-contextMenu-menu {
+  background: var(--spice-main-elevated) !important;
+  border: 1px solid var(--cl-border-strong) !important;
+  border-radius: var(--cl-radius) !important;
+  box-shadow: 0 24px 48px -16px rgba(var(--spice-rgb-shadow), 0.75) !important;
+}
+
+.main-contextMenu-menuItemButton {
+  border-radius: var(--cl-radius-sm) !important;
+}
+
+.main-contextMenu-menuItemButton:hover,
+.main-contextMenu-menuItemButton:focus {
+  background: rgba(var(--spice-rgb-text), 0.07) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Lyrics
+   -------------------------------------------------------------------------- */
+.lyrics-lyrics-background,
+.lyrics-lyrics-container {
+  background: var(--spice-main) !important;
+  --lyrics-color-active: var(--spice-text) !important;
+  --lyrics-color-inactive: rgba(var(--spice-rgb-text), 0.3) !important;
+  --lyrics-color-passed: rgba(var(--spice-rgb-text), 0.5) !important;
+  --lyrics-color-background: var(--spice-main) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Scrollbars
+   -------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb,
+.os-scrollbar-handle {
+  background: rgba(var(--spice-rgb-text), 0.14) !important;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  border-radius: 999px !important;
+}
+
+::-webkit-scrollbar-thumb:hover,
+.os-scrollbar-handle:hover {
+  background: rgba(var(--spice-rgb-button), 0.6) !important;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-track,
+.os-scrollbar-track {
+  background: transparent !important;
+}
+
+/* --------------------------------------------------------------------------
+   theme.js additions
+   -------------------------------------------------------------------------- */
+
+/* Claude spark — sits in the top bar and turns while music plays */
+.cl-spark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-inline: 8px 4px;
+  color: var(--cl-accent);
+  -webkit-app-region: no-drag;
+  cursor: default;
+}
+
+.cl-spark svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 600ms var(--cl-ease);
+}
+
+.cl-playing .cl-spark svg {
+  animation: cl-spin 14s linear infinite;
+}
+
+@keyframes cl-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Editorial greeting on the home page */
+.cl-greeting {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 28px var(--content-spacing, 24px) 4px;
+  font-family: var(--cl-serif);
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--spice-text);
+  animation: cl-fade-up 600ms var(--cl-ease) both;
+}
+
+.cl-greeting svg {
+  flex: none;
+  width: 0.9em;
+  height: 0.9em;
+  color: var(--cl-accent);
+}
+
+@keyframes cl-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
